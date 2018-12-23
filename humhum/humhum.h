@@ -3,12 +3,12 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_humhum.h"
 
-class humhum : public QMainWindow
+class Humhum : public QMainWindow
 {
 	Q_OBJECT
 
 public:
-	humhum(QWidget *parent = Q_NULLPTR);
+	Humhum(QWidget *parent = Q_NULLPTR);
 
 private:
 	Ui::humhumClass ui;
