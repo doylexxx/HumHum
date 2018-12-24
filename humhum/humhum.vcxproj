@@ -125,6 +125,9 @@
   <ItemGroup>
     <QtRcc Include="humhum.qrc" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="STypes.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />
