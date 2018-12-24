@@ -36,6 +36,9 @@
     <ClCompile Include="humhum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FuzzySearch.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="humhum.h">
@@ -54,6 +57,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="STypes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FuzzySearch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

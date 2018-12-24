@@ -113,6 +113,7 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FuzzySearch.cpp" />
     <ClCompile Include="humhum.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
@@ -126,6 +127,7 @@
     <QtRcc Include="humhum.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FuzzySearch.h" />
     <ClInclude Include="STypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
