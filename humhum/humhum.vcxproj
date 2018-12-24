@@ -116,6 +116,7 @@
     <ClCompile Include="FuzzySearch.cpp" />
     <ClCompile Include="humhum.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="matches.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="humhum.h" />
@@ -128,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FuzzySearch.h" />
+    <ClInclude Include="matches.h" />
     <ClInclude Include="STypes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

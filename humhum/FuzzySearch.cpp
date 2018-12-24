@@ -1,4 +1,5 @@
 #include "FuzzySearch.h"
+#include "matches.h"
 
 int SNoteBasedMatch(const SModel *SQBHModels, int nModels, SNote *Query, int QueryLen,
 	NoteBasedResStru *myEMDResStru, int nLen)
