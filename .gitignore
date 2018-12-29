@@ -47,3 +47,4 @@ CMakeLists.txt.user*
 /.vs
 /humhum/x64/Debug
 /x64/Debug
+/humhum.VC.db
