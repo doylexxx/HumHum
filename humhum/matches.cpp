@@ -67,22 +67,13 @@ void SPreprocessMelodyDB(float * fPitchArray, int & iLen, int SourceLen, float R
 	}
 }
 
-inline float Min3(float x, float y, float z)
-{
-	return std::min(std::min(x, y), z);
-}
-
-// 尝试用val更新最小值
-template<typename T>
-inline void minz(T& ans, const T& val) { if (ans > val) ans = val; }
-
-inline float dist(float x, float y) { return (x-y)*(x-y); }
-
 
 /* ---- Frame-based ---- */
 
 const int QRY_LEN = 800, TPL_LEN = 1200;
 const float FINF = 10000;
+
+inline float dist(float x, float y) { return (x - y)*(x - y); }
 
 float SCalcDTWDistance(float * Qry, int lenQry, float * Lib, int lenLib)
 {

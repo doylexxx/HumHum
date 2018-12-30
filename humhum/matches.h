@@ -19,6 +19,11 @@ void SNormSongNote(SNote *Notes, int iNoteSize, int iLen);
 */
 void SPreprocessMelodyDB(float * fPitchArray, int & iLen, int SourceLen, float Ratio);
 
+inline float Min3(float x, float y, float z)
+{
+	return std::min(std::min(x, y), z);
+}
+
 
 /* ---- Frame-based ---- */
 
