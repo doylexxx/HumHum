@@ -125,7 +125,6 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matches.cpp" />
     <ClCompile Include="midifile.c" />
-    <ClCompile Include="record.cpp" />
     <ClCompile Include="SBuildModel.cpp" />
     <ClCompile Include="SDSP.cpp" />
     <ClCompile Include="SMelody.cpp" />
