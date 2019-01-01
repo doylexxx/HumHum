@@ -1,14 +1,3 @@
-/*
-* SMelody.cpp SDHumming Melody Extraction routines
-*
-* Copyright (c) 2010 Shanda Interactive Entertainment Limited.
-* 
-* This program is free software; you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation; either version 3 of the License, or   
-* any later version. See the COPYRIGHT.txt for more details.       
-*/
-
 
 #include "SDSP.h"
 #include "SMelody.h"
@@ -19,8 +8,8 @@
 int SPitchExtraction(SWaveDataStru mySWaveDataStru, float pendiente, float fmin, float fmax, 
 					 float fcutinf, float fcutsup, float*& fPitchData, int &nPitchLen){
 
-	int fs;                           /* sampling rate */
-	int nDataLen;                     /* total samples */ 
+	int fs;                           /* 基频 */
+	int nDataLen;                     /* 采样数 */ 
 	int nFrmShtLen;                   /* samples for frame shift */
 	int nFrmWinLen;                   /* samples for frame windows */
 	int nIndexMax, nIndexMin;         
