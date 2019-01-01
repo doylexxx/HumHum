@@ -1,37 +1,89 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="client.cpp" />
-    <ClCompile Include="SDFuzzySearch.cpp" />
-    <ClCompile Include="humhum.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="matches.cpp" />
-    <ClCompile Include="midifile.c" />
-    <ClCompile Include="SBuildModel.cpp" />
-    <ClCompile Include="SDSP.cpp" />
-    <ClCompile Include="SMelody.cpp" />
-    <ClCompile Include="SModel.cpp" />
-    <ClCompile Include="SUtil.cpp" />
+    <ClCompile Include="client.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="humhum.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="matches.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SBuildModel.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SDFuzzySearch.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SDSP.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SMelody.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SModel.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="SUtil.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="midifile.c">
+      <Filter>Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="client.h" />
-    <ClInclude Include="SDFuzzySearch.h" />
-    <ClInclude Include="matches.h" />
-    <ClInclude Include="midifile.h" />
-    <ClInclude Include="SBuildModel.h" />
-    <ClInclude Include="SDSP.h" />
-    <ClInclude Include="SMelody.h" />
-    <ClInclude Include="SModel.h" />
-    <ClInclude Include="STypes.h" />
-    <ClInclude Include="SUtil.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="humhum.h" />
+    <ClInclude Include="client.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="matches.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="midifile.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SBuildModel.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SDFuzzySearch.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SDSP.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SMelody.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SModel.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="STypes.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SUtil.h">
+      <Filter>Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="humhum.qrc" />
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="humhum.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header">
+      <UniqueIdentifier>{ee45c8e3-f1eb-41cf-ab79-b27436d428f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source">
+      <UniqueIdentifier>{d28f8010-e5cd-4ac7-99c6-e3a32f5e860f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="humhum.h">
+      <Filter>Header</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>

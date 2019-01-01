@@ -48,3 +48,4 @@ CMakeLists.txt.user*
 /humhum/x64/Debug
 /x64/Debug
 /humhum.VC.db
+/humhum/test*.wav
