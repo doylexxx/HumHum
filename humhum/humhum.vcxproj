@@ -66,7 +66,7 @@
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
       <AdditionalLibraryDirectories>$(QTDIR)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -119,10 +119,17 @@
     </QtRcc>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="client.cpp" />
     <ClCompile Include="FuzzySearch.cpp" />
     <ClCompile Include="humhum.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matches.cpp" />
+    <ClCompile Include="midifile.c" />
+    <ClCompile Include="SBuildModel.cpp" />
+    <ClCompile Include="SDSP.cpp" />
+    <ClCompile Include="SMelody.cpp" />
+    <ClCompile Include="SModel.cpp" />
+    <ClCompile Include="SUtil.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="humhum.h" />
@@ -134,9 +141,16 @@
     <QtRcc Include="humhum.qrc" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="client.h" />
     <ClInclude Include="FuzzySearch.h" />
     <ClInclude Include="matches.h" />
+    <ClInclude Include="midifile.h" />
+    <ClInclude Include="SBuildModel.h" />
+    <ClInclude Include="SDSP.h" />
+    <ClInclude Include="SMelody.h" />
+    <ClInclude Include="SModel.h" />
     <ClInclude Include="STypes.h" />
+    <ClInclude Include="SUtil.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

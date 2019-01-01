@@ -1,14 +1,13 @@
-////////////////////////////////////////////////////////////////////////////////
-/**
- * @file   STypes.h
- * @author Wang Lei <wanglei.will@snda.com>
- * @date   Thu Aug 19 10:37:14 2010
- * 
- * @brief  
- * 
- * 
- */
-////////////////////////////////////////////////////////////////////////////////
+/*
+* STypes.h SDHumming types and defines  
+*
+* Copyright (c) 2010 Shanda Interactive Entertainment Limited.
+* 
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or   
+* any later version. See the COPYRIGHT.txt for more details.       
+*/
 
 #ifndef SDHumming_STYPES_H_
 #define SDHumming_STYPES_H_
