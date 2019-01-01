@@ -7,16 +7,13 @@
 
 /* ---- Common ---- */
 
-/*  Return the pitch frames number contained in the note sequence */
+/* 返回音符序列中的音高帧的数目 */
 int SGetNotesPitchLen(SNote *sNotes, int nStartNote, int nNotes);
 
-/*  For normalizing the note sequence, note shift in vertical direction */
+/* 归一化音符序列，只在竖直方向上修改 */
 void SNormSongNote(SNote *Notes, int iNoteSize, int iLen);
 
-/*
-*  For pre-processing (silence & non-speech frame removal,
-*  melody contour normalization) the melody template in DB
-*/
+/* 预处理数据库中的节奏模板（去除无声音的部分、波形大小归一化）*/
 void SPreprocessMelodyDB(float * fPitchArray, int & iLen, int SourceLen, float Ratio);
 
 inline float Min3(float x, float y, float z)
@@ -27,7 +24,7 @@ inline float Min3(float x, float y, float z)
 
 /* ---- Frame-based ---- */
 
-/* compute the frame-based similarity of two vector */
+/* 计算基于帧序列比较相似度 */
 float SCalcDTWDistance(float* Qry, int lenQry, float* Lib, int lenLib);
 
 
@@ -53,14 +50,12 @@ struct flow_t {
 	float amount;         // Amount of flow from "from" to "to" 
 };
 
-// 链表?
 struct node1_t {
 	int i;
 	float val;
 	node1_t *next;
 };
 
-// 十字链表?
 struct node2_t {
 	int i, j;
 	float val;
@@ -79,8 +74,8 @@ private:
 	static const int SIZE = MAX_SIG_SIZE;
 
 	int n1, n2, width;
-	node2_t x[SIZE * 2];
-	float c[SIZE][SIZE];
+	node2_t X[SIZE * 2];
+	float C[SIZE][SIZE];
 	node2_t *endX, *enterX;
 	char isX[SIZE][SIZE];
 	node2_t *rows[SIZE], *cols[SIZE];
