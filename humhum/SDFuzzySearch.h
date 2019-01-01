@@ -2,16 +2,10 @@
 
 #include "STypes.h"
 
-/*
-*  Use segmented note sequence as input to measure two melody similarity,
-*  which is fast but less accurate
-*/
+/* 使用分段的音符序列衡量两段节奏序列的相似度，较快但不那么准确 */
 int SNoteBasedMatch(const SModel *SQBHModels, int nModels, SNote *Query, int QueryLen, 
 	NoteBasedResStru *myEMDResStru, int nLen);
 
-/*
-*  Use pitch sequence as input to measure two melody similarity,
-*  which is accurate but slow
-*/
+/* 使用音高序列衡量两端节奏序列的相似度，较慢但准确 */
 int SFrameBasedMatch(const SModel *SQBHModels, const int nModels, float *m_pQueryPitchVector,
 	int m_nQueryPitchVectorLen, NoteBasedResStru *NoteBasedResStru, int nCandi, FrameBasedResStru *res);

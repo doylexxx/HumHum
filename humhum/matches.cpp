@@ -90,14 +90,14 @@ float SCalcDTWDistance(float * Qry, int lenQry, float * Lib, int lenLib)
 	static float dp[QRY_LEN][TPL_LEN];
 
 	// 使用动态规划计算时间序列的距离度量DTW
-	dp[0][0] = dist(Qry[0], Lib[0]);
+	/* dp[0][0] = dist(Qry[0], Lib[0]);
 	for (t = 1; t < lenQry; t++) dp[t][0] = dp[t - 1][0] + dist(Qry[t], Lib[0]);
 	for (r = 1; r < lenLib; r++) dp[0][r] = dp[0][r - 1] + dist(Qry[0], Lib[r]);
 	for (t = 1; t < lenQry; t++) for (r = 1; r < lenLib; r++) {
 		dp[t][r] = Min3(dp[t - 1][r], dp[t][r - 1], dp[t - 1][r - 1]) + dist(Qry[t], Lib[r]);
-	}
+	}*/
 
-	/* // SDHumming 做法
+	// SDHumming 做法
 	for (t = 0; t < lenQry; t++) {
 		// 将匹配长度差控制在两倍以内
 		iMin = (t + 1) / 2;
@@ -109,13 +109,13 @@ float SCalcDTWDistance(float * Qry, int lenQry, float * Lib, int lenLib)
 
 		// 在范围内
 		for (r = iMin; r <= iMax; r++) {
-			/*if (t < 2 || r < 2) dp[t][r] = 0;
+			if (t < 2 || r < 2) dp[t][r] = 0;
 			else {
 				float dis = fabs(Qry[t] - Lib[r]);
 				dp[t][r] = Min3(dp[t - 1][r - 1] + dis, dp[t - 1][r - 2] + 3 * dis, dp[t - 2][r - 1] + 3 * dis);
 			}
 		}
-	}*/
+	}
 
 	return *std::min_element(dp[lenQry - 1], dp[lenQry - 1] + lenLib);
 }
@@ -271,7 +271,7 @@ float CEmdWrapper::emd(signature_t *Signature1, signature_t *Signature2, flow_t 
 	totalCost = 0;
 	if (Flow != NULL)
 		FlowP = Flow;
-	for (XP = x; XP < endX; XP++) {
+	for (XP = X; XP < endX; XP++) {
 		if (XP == enterX)  /* enterX IS THE EMPTY SLOT */
 			continue;
 		if (XP->i == Signature1->n || XP->j == Signature2->n)  /* DUMMY FEATURE */
@@ -280,7 +280,7 @@ float CEmdWrapper::emd(signature_t *Signature1, signature_t *Signature2, flow_t 
 		if (XP->val == 0)  /* ZERO FLOW */
 			continue;
 
-		totalCost += XP->val * c[XP->i][XP->j];
+		totalCost += XP->val * C[XP->i][XP->j];
 		if (Flow != NULL) {
 			FlowP->from = XP->i;
 			FlowP->to = XP->j;
@@ -318,17 +318,17 @@ float CEmdWrapper::init(signature_t *Signature1, signature_t *Signature2) {
 			DeltaX = fabs(P1->px - P2->px);
 			DeltaY = fabs(P1->py - P2->py);
 
-			DeltaX = DeltaX>110 ? 110 : DeltaX;
-			DeltaY = DeltaY>350 ? 350 : DeltaY;
+			DeltaX = DeltaX > 110 ? 110 : DeltaX;
+			DeltaY = DeltaY > 350 ? 350 : DeltaY;
 
 			int IndexX = (int)((DeltaX + 0.25) / 5);
 			int IndexY = (int)((DeltaY + 0.25) / 5);
 
 			int Index = IndexX * 71 + IndexY;
-			c[i][j] = (float)sqrt(DeltaX*DeltaX + DeltaY * DeltaY);
+			C[i][j] = (float)sqrt(DeltaX*DeltaX + DeltaY * DeltaY);
 
-			if (c[i][j] > maxC)
-				maxC = c[i][j];
+			if (C[i][j] > maxC)
+				maxC = C[i][j];
 		}
 	}
 
@@ -350,14 +350,14 @@ float CEmdWrapper::init(signature_t *Signature1, signature_t *Signature2) {
 	diff = sSum - dSum;
 	if (fabs(diff) >= EPSILON * sSum) {
 		if (diff < 0.0) {
-			memset(c[n1], 0, sizeof(float)*n2);
+			memset(C[n1], 0, sizeof(float)*n2);
 			S[n1] = -diff;
 			rows[n1] = NULL;
 			n1++;
 		}
 		else {
 			for (i = 0; i < n1; i++)
-				c[i][n2] = 0;
+				C[i][n2] = 0;
 			D[n2] = diff;
 			cols[n2] = NULL;
 			n2++;
@@ -366,7 +366,7 @@ float CEmdWrapper::init(signature_t *Signature1, signature_t *Signature2) {
 
 	memset(isX[0], 0, SIZE*SIZE);
 
-	endX = x;
+	endX = X;
 
 	maxW = sSum > dSum ? sSum : dSum;
 
@@ -425,7 +425,7 @@ void CEmdWrapper::findBasicVariables(node1_t *U, node1_t *V) {
 					i = CurU->i;
 					if (isX[i][j]) {
 						/* COMPUTE U[i] */
-						CurU->val = c[i][j] - CurV->val;
+						CurU->val = C[i][j] - CurV->val;
 						/* ...AND ADD IT TO THE MARKED LIST */
 						PrevU->next = CurU->next;
 						CurU->next = u1Head.next != NULL ? u1Head.next : NULL;
@@ -451,7 +451,7 @@ void CEmdWrapper::findBasicVariables(node1_t *U, node1_t *V) {
 					j = CurV->i;
 					if (isX[i][j]) {
 						/* COMPUTE V[j] */
-						CurV->val = c[i][j] - CurU->val;
+						CurV->val = C[i][j] - CurU->val;
 						/* ...AND ADD IT TO THE MARKED LIST */
 						PrevV->next = CurV->next;
 						CurV->next = v1Head.next != NULL ? v1Head.next : NULL;
@@ -550,7 +550,7 @@ int CEmdWrapper::findLoop(node2_t **Loop) {
 
 	CurX = Loop;
 	NewX = *CurX = enterX;
-	IsUsed[enterX - x] = 1;
+	IsUsed[enterX - X] = 1;
 	steps = 1;
 
 	do
@@ -558,13 +558,13 @@ int CEmdWrapper::findLoop(node2_t **Loop) {
 		if (steps % 2 == 1) {
 			/* FIND AN UNUSED X IN THE ROW */
 			NewX = rows[NewX->i];
-			while (NewX != NULL && IsUsed[NewX - x])
+			while (NewX != NULL && IsUsed[NewX - X])
 				NewX = NewX->nextC;
 		}
 		else {
 			/* FIND AN UNUSED X IN THE COLUMN, OR THE ENTERING X */
 			NewX = cols[NewX->j];
-			while (NewX != NULL && IsUsed[NewX - x] && NewX != enterX)
+			while (NewX != NULL && IsUsed[NewX - X] && NewX != enterX)
 				NewX = NewX->nextR;
 			if (NewX == enterX)
 				break;
@@ -573,7 +573,7 @@ int CEmdWrapper::findLoop(node2_t **Loop) {
 		if (NewX != NULL) {/* FOUND THE NEXT X */
 						   /* ADD X TO THE LOOP */
 			*++CurX = NewX;
-			IsUsed[NewX - x] = 1;
+			IsUsed[NewX - X] = 1;
 			steps++;
 		}
 		else {/* DIDN'T FIND THE NEXT X */
@@ -587,18 +587,18 @@ int CEmdWrapper::findLoop(node2_t **Loop) {
 						NewX = NewX->nextR;
 					else
 						NewX = NewX->nextC;
-				} while (NewX != NULL && IsUsed[NewX - x]);
+				} while (NewX != NULL && IsUsed[NewX - X]);
 
 				if (NewX == NULL) {
-					IsUsed[*CurX - x] = 0;
+					IsUsed[*CurX - X] = 0;
 					CurX--;
 					steps--;
 				}
 			} while (NewX == NULL && CurX >= Loop);
 
-			IsUsed[*CurX - x] = 0;
+			IsUsed[*CurX - X] = 0;
 			*CurX = NewX;
-			IsUsed[NewX - x] = 1;
+			IsUsed[NewX - X] = 1;
 		}
 	} while (CurX >= Loop);
 
@@ -643,7 +643,7 @@ void CEmdWrapper::russel(float *S, float *D) {
 	float v;
 	for (i = 0; i < n1; i++) {
 		for (j = 0; j < n2; j++) {
-			v = c[i][j];
+			v = C[i][j];
 			if (Ur[i].val <= v)
 				Ur[i].val = v;
 			if (Vr[j].val <= v)
@@ -654,7 +654,7 @@ void CEmdWrapper::russel(float *S, float *D) {
 	/* 2. COMPUTE THE Delta MATRIX */
 	for (i = 0; i < n1; i++) {
 		for (j = 0; j < n2; j++)
-			Delta[i][j] = c[i][j] - Ur[i].val - Vr[j].val;
+			Delta[i][j] = C[i][j] - Ur[i].val - Vr[j].val;
 	}
 
 	/* 2. FIND THE BASIC VARIABLES  */
@@ -695,15 +695,15 @@ void CEmdWrapper::russel(float *S, float *D) {
 			for (CurV = vHead.next; CurV != NULL; CurV = CurV->next) {
 				int j;
 				j = CurV->i;
-				if (CurV->val == c[minI][j]) {/* COLUMN j NEEDS UPDATING */
+				if (CurV->val == C[minI][j]) {/* COLUMN j NEEDS UPDATING */
 											   /* FIND THE NEW MAXIMUM VALUE IN THE COLUMN */
 					oldVal = CurV->val;
 					CurV->val = -EMD_INFINITY;
 					for (CurU = uHead.next; CurU != NULL; CurU = CurU->next) {
 						int i;
 						i = CurU->i;
-						if (CurV->val <= c[i][j])
-							CurV->val = c[i][j];
+						if (CurV->val <= C[i][j])
+							CurV->val = C[i][j];
 					}
 
 					/* IF NEEDED, ADJUST THE RELEVANT Delta[*][j] */
@@ -718,15 +718,15 @@ void CEmdWrapper::russel(float *S, float *D) {
 			for (CurU = uHead.next; CurU != NULL; CurU = CurU->next) {
 				int i;
 				i = CurU->i;
-				if (CurU->val == c[i][minJ]) {/* ROW i NEEDS UPDATING */
+				if (CurU->val == C[i][minJ]) {/* ROW i NEEDS UPDATING */
 											   /* FIND THE NEW MAXIMUM VALUE IN THE ROW */
 					oldVal = CurU->val;
 					CurU->val = -EMD_INFINITY;
 					for (CurV = vHead.next; CurV != NULL; CurV = CurV->next) {
 						int j;
 						j = CurV->i;
-						if (CurU->val <= c[i][j])
-							CurU->val = c[i][j];
+						if (CurU->val <= C[i][j])
+							CurU->val = C[i][j];
 					}
 
 					/* If NEEDED, ADJUST THE RELEVANT Delta[i][*] */
@@ -795,7 +795,7 @@ int CEmdWrapper::isOptimal(node1_t *U, node1_t *V)
 		val = U[i].val;
 		for (j = 0; j < n2; j++) {
 			if (!isX[i][j]) {
-				delta = c[i][j] - val - V[j].val;
+				delta = C[i][j] - val - V[j].val;
 				if (deltaMin > delta) {
 					deltaMin = delta;
 					minI = i;

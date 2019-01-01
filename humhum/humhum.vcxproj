@@ -120,7 +120,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="client.cpp" />
-    <ClCompile Include="FuzzySearch.cpp" />
+    <ClCompile Include="SDFuzzySearch.cpp" />
     <ClCompile Include="humhum.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matches.cpp" />
@@ -142,7 +142,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="client.h" />
-    <ClInclude Include="FuzzySearch.h" />
+    <ClInclude Include="SDFuzzySearch.h" />
     <ClInclude Include="matches.h" />
     <ClInclude Include="midifile.h" />
     <ClInclude Include="SBuildModel.h" />
