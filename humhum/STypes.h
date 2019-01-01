@@ -29,7 +29,7 @@
 
 #define FUSION_RATIO 0.66f  
 
-#define MAX_SIG_SIZE   85
+#define MAX_SIG_SIZE   130
 #define MAX_ITERATIONS 500
 #define EMD_INFINITY       1e20f
 #define MAX_NUMBER INT_MAX
@@ -59,7 +59,7 @@
 /* the window size of median filter*/ 
 #define MEDIAN_FILTER_WINDOWS_SIZE 5
 
-#define MAX_EMD_FEASIZE 100
+#define MAX_EMD_FEASIZE 200
 
 typedef struct {
 	float fNoteValue; /* note value */

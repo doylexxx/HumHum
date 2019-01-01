@@ -3,12 +3,12 @@
 
 /*  Compare two FrameBasedResStru items according fScore field */
 int _compareDTWScore(const FrameBasedResStru& a, const FrameBasedResStru& b) {
-	return a.fScore > b.fScore;
+	return a.fScore < b.fScore;
 }
 
 /*  Compare two NoteBasedResStru items according fScore field */
 int _compareEMDRes(const NoteBasedResStru& a, const NoteBasedResStru& b) {
-	return a.fScore > b.fScore;
+	return a.fScore < b.fScore;
 }
 
 int SNoteBasedMatch(const SModel *SQBHModels, int nModels, SNote *Query, int QueryLen,

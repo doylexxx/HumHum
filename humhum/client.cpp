@@ -1,4 +1,5 @@
 #include "client.h"
+#include "SDFuzzySearch.h"
 
 /* both frame-based and note-based melody feature are extracted */
 int SMelodyFeatureExtraction(char* filename, float*& pFeaBuf, int &nFeaLen, SNote *&Query, int &nNoteLen) {
@@ -83,64 +84,64 @@ int SClientTester(char* szModel, char* szModelinfo, char* szWav, char* szOut) {
 
 	/*∆•≈‰≤ø∑÷*/
 
-	////2, Melody Search
-	//NoteBasedResStru *myEMDResStru = new NoteBasedResStru[nTotalModel];
-	//SNoteBasedMatch(SQBHModels, nModels, QueryNotes, nNoteLen, myEMDResStru, nFeaLen);
+	//2, Melody Search
+	NoteBasedResStru *myEMDResStru = new NoteBasedResStru[nTotalModel];
+	SNoteBasedMatch(SQBHModels, nModels, QueryNotes, nNoteLen, myEMDResStru, nFeaLen);
 
-	//FrameBasedResStru *myDTWResStru = new FrameBasedResStru[20];
-	//SFrameBasedMatch(SQBHModels, nModels, pFeaBuf, nFeaLen, myEMDResStru, 20, myDTWResStru);
+	FrameBasedResStru *myDTWResStru = new FrameBasedResStru[20];
+	SFrameBasedMatch(SQBHModels, nModels, pFeaBuf, nFeaLen, myEMDResStru, 20, myDTWResStru);
 
-	////3, Finalize and print the result
-	//FILE *OutFile = fopen(szOut, "a+t");
+	//3, Finalize and print the result
+	FILE *OutFile = fopen(szOut, "w");
 	//fprintf(OutFile, "%s ", szWav);
-	//for (i = 0; i < 20; i++) {
-	//	fprintf(OutFile, "%d: %s, %f; ", myDTWResStru[i].nModelID + 1, szModelInfoStrs[myDTWResStru[i].nModelID], myDTWResStru[i].fScore);
-	//	printf("%d: %s, %f\n", myDTWResStru[i].nModelID + 1, szModelInfoStrs[myDTWResStru[i].nModelID], myDTWResStru[i].fScore);
-	//}
-	//fprintf(OutFile, "\n");
-	//fclose(OutFile);
+	for (i = 0; i < 20; i++) {
+		fprintf(OutFile, "%d: %s, %f;\n", myDTWResStru[i].nModelID + 1, szModelInfoStrs[myDTWResStru[i].nModelID], myDTWResStru[i].fScore);
+		printf("%d: %s, %f\n", myDTWResStru[i].nModelID + 1, szModelInfoStrs[myDTWResStru[i].nModelID], myDTWResStru[i].fScore);
+	}
+	fprintf(OutFile, "\n");
+	fclose(OutFile);
 
-	//for (i = 0; i < nTotalSongs; i++) {
-	//	if (NULL != SQBHModels[i].PhrasePos) {
-	//		delete[] SQBHModels[i].PhrasePos;
-	//		SQBHModels[i].PhrasePos = NULL;
-	//	}
-	//	if (NULL != SQBHModels[i].sNotes) {
-	//		delete[] SQBHModels[i].sNotes;
-	//		SQBHModels[i].sNotes = NULL;
-	//	}
-	//}
+	for (i = 0; i < nTotalSongs; i++) {
+		if (NULL != SQBHModels[i].PhrasePos) {
+			delete[] SQBHModels[i].PhrasePos;
+			SQBHModels[i].PhrasePos = NULL;
+		}
+		if (NULL != SQBHModels[i].sNotes) {
+			delete[] SQBHModels[i].sNotes;
+			SQBHModels[i].sNotes = NULL;
+		}
+	}
 
-	//for (i = 0; i < nTotalSongs; i++) {
-	//	if (NULL != szModelInfoStrs[i]) {
-	//		delete[] szModelInfoStrs[i];
-	//		szModelInfoStrs[i] = NULL;
-	//	}
-	//}
-	//if (NULL != myEMDResStru) {
-	//	delete[] myEMDResStru;
-	//	myEMDResStru = NULL;
-	//}
-	//if (NULL != myDTWResStru) {
-	//	delete[] myDTWResStru;
-	//	myDTWResStru = NULL;
-	//}
-	//if (NULL != SQBHModels) {
-	//	delete[] SQBHModels;
-	//	SQBHModels = NULL;
-	//}
-	//if (NULL != szModelInfoStrs) {
-	//	delete[] szModelInfoStrs;
-	//	szModelInfoStrs = NULL;
-	//}
-	//if (NULL != QueryNotes) {
-	//	delete[] QueryNotes;
-	//	QueryNotes = NULL;
-	//}
-	//if (NULL != pFeaBuf) {
-	//	delete[] pFeaBuf;
-	//	pFeaBuf = NULL;
-	//}
+	for (i = 0; i < nTotalSongs; i++) {
+		if (NULL != szModelInfoStrs[i]) {
+			delete[] szModelInfoStrs[i];
+			szModelInfoStrs[i] = NULL;
+		}
+	}
+	if (NULL != myEMDResStru) {
+		delete[] myEMDResStru;
+		myEMDResStru = NULL;
+	}
+	if (NULL != myDTWResStru) {
+		delete[] myDTWResStru;
+		myDTWResStru = NULL;
+	}
+	if (NULL != SQBHModels) {
+		delete[] SQBHModels;
+		SQBHModels = NULL;
+	}
+	if (NULL != szModelInfoStrs) {
+		delete[] szModelInfoStrs;
+		szModelInfoStrs = NULL;
+	}
+	if (NULL != QueryNotes) {
+		delete[] QueryNotes;
+		QueryNotes = NULL;
+	}
+	if (NULL != pFeaBuf) {
+		delete[] pFeaBuf;
+		pFeaBuf = NULL;
+	}
 	//return 0;
 
 

@@ -26,15 +26,7 @@ int main(int argc, char *argv[])
 	//}
 
 	
-	const char * modelFileName = "ShengdaModel/QBH.Model";//盛大模型
-	const char * modelInfoName = "ShengdaModel/QBHModel.info";
-	//const char * modelFileName = "OutputModel/QBH.Model"; //200首训练好的模型
-	//const char * modelInfoName = "OutputModel/QBHModel.info";
-
-	const char * wavFileName = "test.wav"; //输入的wav是本地的，需要在UI加一步先录制？
-	const char * resultFileName = "result.txt"; //匹配后的结果
-	/*读取模型转化成midi数据结构，读取wav音乐转化成midi数据结构，进行匹配得到结果，但是匹配部分被注释掉了*/
-	SClientTester((char *)modelFileName, (char *)modelInfoName, (char *)wavFileName, (char *)resultFileName);
+	
 
 
 

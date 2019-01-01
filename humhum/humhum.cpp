@@ -3,7 +3,9 @@
 #include <qtextstream.h>
 #include <qfile.h>
 #include <iostream>
+#include "client.h"
 
+#define SD 1
 
 
 Humhum::Humhum(QWidget *parent)
@@ -12,7 +14,11 @@ Humhum::Humhum(QWidget *parent)
 	ui.setupUi(this);
 	
 	// 显示曲库
+#if SD
 	QFile dataFile("Song100.txt");
+#else
+	QFile dataFile("Song200.txt");
+#endif
 	if (dataFile.open(QFile::ReadOnly | QIODevice::Text))
 	{
 		QTextStream data(&dataFile);
@@ -42,7 +48,34 @@ void Humhum::on_button_rec_click()
 
 void Humhum::on_button_hum_click()
 {
+#if 1
+	const char * modelFileName = "ShengdaModel/QBH.Model";//盛大模型
+	const char * modelInfoName = "ShengdaModel/QBHModel.info";
+#else
+	const char * modelFileName = "OutputModel/QBH.Model"; //200首训练好的模型
+	const char * modelInfoName = "OutputModel/QBHModel.info";
+#endif
+
+	const char * wavFileName = "test.wav"; //输入的wav是本地的，需要在UI加一步先录制？
+	const char * resultFileName = "result.txt"; //匹配后的结果
+												/*读取模型转化成midi数据结构，读取wav音乐转化成midi数据结构，进行匹配得到结果，但是匹配部分被注释掉了*/
+	SClientTester((char *)modelFileName, (char *)modelInfoName, (char *)wavFileName, (char *)resultFileName);
 	
+	QFile dataFile("result.txt");
+	if (dataFile.open(QFile::ReadOnly | QIODevice::Text))
+	{
+		QTextStream data(&dataFile);
+		QStringList fonts;
+		QString line;
+		while (!data.atEnd())
+		{
+			line = data.readLine();
+			line.remove('\n');
+			fonts << line;
+		}
+		QStringListModel *model = new QStringListModel(fonts);
+		ui.list_results->setModel(model);
+	}
 }
 
 void Humhum::recordAudio() {
